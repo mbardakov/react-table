@@ -1,7 +1,7 @@
 export function ProductRow({item}) {
     return (
         <>
-            <span>{item.name} {item.price} {!item.stocked && '(Out of stock)'}</span>
+            <span style={{ textDecoration: item.stocked? 'none' : 'line-through' }}>{item.name} {item.price}</span>
             <br />
         </>
     )
