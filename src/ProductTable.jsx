@@ -1,17 +1,23 @@
 import { ProductCategoryHeader } from './ProductCategoryHeader';
 import { ProductRow } from './ProductRow';
 
-export function ProductTable({ data }) {
+export function ProductTable({ searchText, showInStockOnly, data }) {
 	const categories = data.reduce((acc, item) => 
 		(acc && !acc.find(oldItem => oldItem.category === item.category)) ?
 			acc.concat([{ category: item.category, id: item.id }]) : 
 			acc, []);
+	console.log('ProductTable has data: ', data)
 	return (
 		<>
 			{categories.map(cat => 
 				<div key={cat.id}>
 					<ProductCategoryHeader name={cat.category}/>
-					{data.map(item => item.category === cat.category && <ProductRow item={item} key={item.id} />)}
+					{data.map(item => 
+						item &&
+						item.category === cat.category &&
+						(item.stocked || !showInStockOnly) &&
+						item.name.toLowerCase().indexOf(searchText.toLowerCase()) >= 0 &&
+						<ProductRow item={item} key={item.id} />)}
 				</div>
 			)}
 		</>
