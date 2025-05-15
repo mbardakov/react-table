@@ -6,11 +6,10 @@ export function ProductTable({ searchText, showInStockOnly, data }) {
 		(acc && !acc.find(oldItem => oldItem.category === item.category)) ?
 			acc.concat([{ category: item.category, id: item.id }]) : 
 			acc, []);
-	console.log('ProductTable has data: ', data)
 	return (
-		<>
+		<div className='flex flex-wrap'>
 			{categories.map(cat => 
-				<div key={cat.id}>
+				<div key={cat.id} className='min-w-2xs mb-2'>
 					<ProductCategoryHeader name={cat.category}/>
 					{data.map(item => 
 						item &&
@@ -20,6 +19,6 @@ export function ProductTable({ searchText, showInStockOnly, data }) {
 						<ProductRow item={item} key={item.id} />)}
 				</div>
 			)}
-		</>
+		</div>
 	)
 }

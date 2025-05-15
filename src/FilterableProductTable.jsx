@@ -7,7 +7,7 @@ export function FilterableProductTable({ data }) {
 	const [showInStockOnly, setShowInStockOnly] = useState(false);
 
 	return (
-		<>
+		<div className='main-view'>
 			<SearchBar 
 				searchText={searchText}
 				showInStockOnly={showInStockOnly}
@@ -19,7 +19,7 @@ export function FilterableProductTable({ data }) {
 				showInStockOnly={showInStockOnly}
 				data={data}
 			/>
-		</>
+		</div>
 
 	)
 }
